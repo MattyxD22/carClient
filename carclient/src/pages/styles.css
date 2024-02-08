@@ -1,0 +1,24 @@
+.pageHeader {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .loginContainer{
+    height: calc(100vh - 50px) !important
+  }
+
+  .containerCars{
+    height: calc(100vh - 60px) !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .clickable{
+    cursor: pointer;
+  }
