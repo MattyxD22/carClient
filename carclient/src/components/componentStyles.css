@@ -1,0 +1,14 @@
+.buttonHeader{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.headerBG{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #5c5c5c;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 5px;
+    background: linear-gradient(#282c34, #5c5c5c);
+}

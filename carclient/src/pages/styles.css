@@ -1,0 +1,65 @@
+.pageHeader {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .loginContainer{
+    height: calc(100vh - 50px) !important
+  }
+
+  .containerCars{
+    height: calc(100vh - 60px) !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .control_cardImg_size{
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    color: var(--bs-red) 
+  }
+
+  @media (width < 450px) {
+    .containerCars{
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  
+  @media (width <= 825px) {
+    .containerCars{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .clickable{
+    cursor: pointer;
+  }
+
+  .carInfo_row{
+    padding-top: 0.5rem;
+  }
+
+  .carInfo_row span{
+    width: 10rem;
+  }
+
+  .carInfo_row p{
+    margin-bottom: 0px ;
+  }
+
+  .createAccount_row{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .createAccount_row span{
+    width: 150px;
+  }
