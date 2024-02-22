@@ -5,6 +5,8 @@ import * as GLOBAL from "../globals";
 import { Link, useSearchParams } from "react-router-dom";
 
 const Cars = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   const [searchParams] = useSearchParams();
   const [cars, setCars] = useState(null);
 
@@ -12,12 +14,16 @@ const Cars = () => {
   const url = GLOBAL.url + "cars/";
 
   useEffect(() => {
+    if (localStorage.getItem("auth-token") !== null) {
+      setIsSignedIn(true);
+    }
+
     const getCars = async () => {
       console.log("loading cars");
       await loadCars();
     };
     getCars();
-  }, []);
+  }, [isSignedIn]);
 
   async function loadCars() {
     try {
@@ -49,9 +55,22 @@ const Cars = () => {
       <NavigationHeader></NavigationHeader>
       <div className="d-flex flex-row w-100 justify-content-end px-4 pt-4 pb-2">
         <span>Found an interesting car?</span>
-        <button type="button" className="btn btn-primary ms-3 me-2 ">
-          Add new car
-        </button>
+        {isSignedIn === true ? (
+          <Link to="/newCar">
+            <button type="button" className="btn btn-primary ms-3 me-2 ">
+              Add new car
+            </button>
+          </Link>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="btn btn-secondary ms-3 me-2 "
+            title={"Log In to add a car"}
+          >
+            Add new car
+          </button>
+        )}
       </div>
       <div className="containerCars w-100 overflow-auto px-3">
         {cars != null &&

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import NavigationHeader from "../components/NavigationHeader";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import * as GLOBAL from "../globals";
 import CarImgComponent from "../components/carImgComponent";
 
 const Car = () => {
-  //   const params = useParams();
-  //   console.log(params.carOBJ);
+  const navigate = useNavigate();
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const [searchParams] = useSearchParams();
   const [carVIN, setCarVIN] = useState(searchParams.get("VIN"));
@@ -46,18 +46,44 @@ const Car = () => {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("auth-token") !== null) {
+      setIsSignedIn(true);
+    }
+
     const getCarFromVIN = async (VIN) => {
       const response = await fetch(url + "carVIN/" + VIN);
       const data = await response.json();
       setCar(data[0]);
     };
     getCarFromVIN(carVIN);
-  }, []);
+  }, [isSignedIn]);
 
-  const deleteCar = async (VIN) => {
-    alert(
-      "This will delete the car permanently from the database, are you sure?"
-    );
+  const deleteCar = async () => {
+    const answer = window.confirm("Are you sure you want to delete this car?");
+
+    if (answer) {
+      const data = JSON.stringify({
+        VIN: carVIN,
+      });
+
+      await fetch(url + "deleteCar", {
+        method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "content-type": "application/json",
+          Authorization: localStorage.getItem("auth-token"),
+        },
+        body: data, // body data type must match "Content-Type" header)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert("Car has been deleted successfully");
+          navigate("/cars");
+          //console.log("response from api: ", data);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
   };
 
   const updateCar = async () => {
@@ -70,18 +96,20 @@ const Car = () => {
       Image: car.Image,
     });
 
-    console.log(data);
+    //console.log(data);
 
     await fetch(url + "updateCar", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "PUT", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "content-type": "application/json",
+        Authorization: localStorage.getItem("auth-token"),
       },
       body: data, // body data type must match "Content-Type" header)
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("response from api: ", data);
+        alert("Car has been updated successfully");
+        //console.log("response from api: ", data);
       })
       .catch((err) => {
         alert(err.message);
@@ -124,31 +152,39 @@ const Car = () => {
   return (
     <div className="pageHeader overflow-hidden pb-5">
       <NavigationHeader></NavigationHeader>
-      <div className="singleCar_options_header d-flex flex-row justify-content-center py-2">
-        <button
-          type="button"
-          className={editMode == false ? "btn btn-primary" : "btn btn-success"}
-          onClick={async () => {
-            setEditMode(!editMode);
 
-            // setting it to "false" will not make it update properly
-            if (editMode === true && carEdited === true) {
-              await updateCar();
+      {isSignedIn === true ? (
+        <div className="singleCar_options_header d-flex flex-row justify-content-end container py-2">
+          <button
+            type="button"
+            className={
+              editMode == false ? "btn btn-primary" : "btn btn-success"
             }
-          }}
-        >
-          {editMode === false ? "Edit Car" : "Update Car"}
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger mx-2"
-          onClick={() => {
-            deleteCar(carVIN);
-          }}
-        >
-          Remove Car
-        </button>
-      </div>
+            onClick={async () => {
+              setEditMode(!editMode);
+
+              // setting it to "false" will not make it update properly
+              if (editMode === true && carEdited === true) {
+                await updateCar();
+              }
+            }}
+          >
+            {editMode === false ? "Edit Car" : "Update Car"}
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger mx-2"
+            onClick={() => {
+              deleteCar(carVIN);
+            }}
+          >
+            Remove Car
+          </button>
+        </div>
+      ) : (
+        <div className="py-4"></div>
+      )}
+
       <div className="d-flex container flex-column border rounded w-100 h-100 mx-3 px-3 py-3">
         <div className="d-flex flex-row carInfo_row">
           <span className="text-info">Make</span>

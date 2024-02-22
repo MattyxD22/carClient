@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavigationHeader from "../components/NavigationHeader";
 import * as GLOBAL from "../globals";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState(null);
   const [userPassword, setUserPassword] = useState(null);
   const url = GLOBAL.url + "users/";
@@ -32,7 +34,10 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("response from api: ", data);
+        let token = data.data;
+        localStorage.setItem("auth-token", token.data);
+        navigate("/cars");
+        //console.log(localStorage.getItem("auth-token"));
       })
       .catch((err) => {
         alert(err.message);

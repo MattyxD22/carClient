@@ -10,6 +10,7 @@ import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
 import Tires from "./pages/Tires";
 import Car from "./pages/Car";
+import NewCar from "./pages/newCar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,6 +26,7 @@ root.render(
       <Route path="/Login" element={<Login></Login>}></Route>
       <Route path="/Tires" element={<Tires></Tires>}></Route>
       <Route path="/Car" element={<Car></Car>}></Route>
+      <Route path="/newCar" element={<NewCar />}></Route>
     </Routes>
   </BrowserRouter>
 );

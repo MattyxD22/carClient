@@ -1,7 +1,22 @@
 import { Outlet, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import styles from "./componentStyles.css";
 
 const NavigationHeader = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const signOut = () => {
+    localStorage.removeItem("auth-token");
+    setIsSignedIn(false);
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("auth-token") !== null) {
+      setIsSignedIn(true);
+    }
+  }, [isSignedIn]);
+
   return (
     <div className="headerBG">
       <Link to="/cars">
@@ -23,6 +38,19 @@ const NavigationHeader = () => {
         <button type="button" className="buttonHeader btn btn-secondary">
           Create Account
         </button>
+      </Link>
+      <Link>
+        {isSignedIn === true ? (
+          <button
+            type="button"
+            onClick={signOut}
+            className="btn btn-danger buttonHeader"
+          >
+            Log Out
+          </button>
+        ) : (
+          <></>
+        )}
       </Link>
     </div>
   );
