@@ -3,6 +3,7 @@ import NavigationHeader from "../components/NavigationHeader";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import * as GLOBAL from "../globals";
 import CarImgComponent from "../components/carImgComponent";
+import styles from "./styles.css";
 
 const Car = () => {
   const navigate = useNavigate();

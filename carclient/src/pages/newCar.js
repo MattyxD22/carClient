@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavigationHeader from "../components/NavigationHeader";
 import * as GLOBAL from "../globals";
-
+import styles from "./styles.css";
 import CarImgComponent from "../components/carImgComponent";
 
 const NewCar = () => {

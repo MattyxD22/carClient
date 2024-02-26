@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-
+import styles from "./componentStyles.css";
 
 const NavigationHeader = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);

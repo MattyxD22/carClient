@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import styles from "./componentStyles.css";
 const NavigationButtons = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>

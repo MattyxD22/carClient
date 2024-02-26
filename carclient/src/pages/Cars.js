@@ -2,7 +2,7 @@ import NavigationHeader from "../components/NavigationHeader";
 import React, { useState, useEffect } from "react";
 import * as GLOBAL from "../globals";
 import { Link } from "react-router-dom";
-
+import styles from "./styles.css";
 const Cars = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [cars, setCars] = useState(null);

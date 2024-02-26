@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationHeader from "../components/NavigationHeader";
 import * as GLOBAL from "../globals";
+import styles from "./styles.css";
 
 const Login = () => {
   const navigate = useNavigate();

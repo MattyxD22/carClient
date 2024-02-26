@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavigationHeader from "../components/NavigationHeader";
 import { useNavigate } from "react-router-dom";
 import * as GLOBAL from "../globals";
+import styles from "./styles.css";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const CreateAccount = () => {
   };
 
   const handleCreateAccount = async () => {
-
     // Check if email already is inside the system
     const response = await fetch(url + "checkEmail/" + createUser.Email);
     const data = await response.json();
