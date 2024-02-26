@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import NavigationHeader from "../components/NavigationHeader";
+import { useNavigate } from "react-router-dom";
 import * as GLOBAL from "../globals";
 
 const CreateAccount = () => {
+  const navigate = useNavigate();
   const url = GLOBAL.url + "users/";
 
   const [createUser, setCreateUser] = useState({
@@ -25,11 +27,35 @@ const CreateAccount = () => {
   };
 
   const handleCreateAccount = async () => {
-    console.log(createUser);
 
+    // Check if email already is inside the system
     const response = await fetch(url + "checkEmail/" + createUser.Email);
     const data = await response.json();
-    console.log(data);
+
+    // if email doesnt exist, proceed to create account
+    if (data.Exist === false) {
+      const createUserRes = await fetch(url + "createAccount", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "content-type": "application/json",
+          //Authorization: localStorage.getItem("auth-token"),
+        },
+        body: JSON.stringify({
+          email: createUser.Email,
+          password: createUser.Password,
+        }), // body data type must match "Content-Type" header)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert("Your account has been created successfully");
+          navigate("/login");
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else {
+      alert("An account with this email already exists");
+    }
   };
 
   return (

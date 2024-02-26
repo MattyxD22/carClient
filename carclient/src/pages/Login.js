@@ -37,7 +37,6 @@ const Login = () => {
         let token = data.data;
         localStorage.setItem("auth-token", token.data);
         navigate("/cars");
-        //console.log(localStorage.getItem("auth-token"));
       })
       .catch((err) => {
         alert(err.message);

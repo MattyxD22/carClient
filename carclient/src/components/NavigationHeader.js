@@ -29,16 +29,26 @@ const NavigationHeader = () => {
           View Tires
         </button>
       </Link> */}
-      <Link to="/login">
-        <button type="button" className="buttonHeader btn btn-secondary">
-          Login
-        </button>
-      </Link>
-      <Link to="/createAccount">
-        <button type="button" className="buttonHeader btn btn-secondary">
-          Create Account
-        </button>
-      </Link>
+      {isSignedIn === true ? (
+        <></>
+      ) : (
+        <Link to="/login">
+          <button type="button" className="buttonHeader btn btn-secondary">
+            Login
+          </button>
+        </Link>
+      )}
+
+      {isSignedIn === true ? (
+        <></>
+      ) : (
+        <Link to="/createAccount">
+          <button type="button" className="buttonHeader btn btn-secondary">
+            Create Account
+          </button>
+        </Link>
+      )}
+
       <Link>
         {isSignedIn === true ? (
           <button

@@ -1,9 +1,10 @@
-.buttonHeader{
+.buttonHeader {
     margin-right: 5px;
     margin-top: 5px;
+    width: 10rem
 }
 
-.headerBG{
+.headerBG {
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #5c5c5c;

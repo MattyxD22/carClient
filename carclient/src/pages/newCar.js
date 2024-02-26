@@ -97,7 +97,6 @@ const NewCar = () => {
       .then((res) => res.json())
       .then((data) => {
         alert("Car has been added successfully");
-        //console.log("response from api: ", data);
       })
       .catch((err) => {
         alert(err.message);
@@ -182,7 +181,6 @@ const NewCar = () => {
             ></input>
             <div className="py-4 d-flex flex-row">
               {car?.Image.map((img) => {
-                //console.log(img);
                 if (typeof img != "undefined") {
                   return (
                     <CarImgComponent

@@ -30,15 +30,11 @@ const Car = () => {
   const markForDeletion = (imgData) => {
     //const tempList = car.Image;
     const tempImgs = car.Image.map((item) => {
-      //console.log(item);
       if (item.url !== imgData) {
         return item;
       }
       //return item.filter((item) => item.url !== imgData);
     });
-    //console.log(tempImgs);
-    //console.log(car);
-
     setCar((prevCar) => ({
       ...prevCar,
       Image: [...tempImgs],
@@ -78,7 +74,6 @@ const Car = () => {
         .then((data) => {
           alert("Car has been deleted successfully");
           navigate("/cars");
-          //console.log("response from api: ", data);
         })
         .catch((err) => {
           alert(err.message);
@@ -96,7 +91,6 @@ const Car = () => {
       Image: car.Image,
     });
 
-    //console.log(data);
 
     await fetch(url + "updateCar", {
       method: "PUT", // *GET, POST, PUT, DELETE, etc.
@@ -109,7 +103,6 @@ const Car = () => {
       .then((res) => res.json())
       .then((data) => {
         alert("Car has been updated successfully");
-        //console.log("response from api: ", data);
       })
       .catch((err) => {
         alert(err.message);
