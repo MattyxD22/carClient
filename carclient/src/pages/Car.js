@@ -50,7 +50,8 @@ const Car = () => {
     const getCarFromVIN = async (VIN) => {
       const response = await fetch(url + "carVIN/" + VIN);
       const data = await response.json();
-      setCar(data[0]);
+      console.log(data);
+      setCar(data.car[0]);
     };
     getCarFromVIN(carVIN);
   }, [isSignedIn]);
