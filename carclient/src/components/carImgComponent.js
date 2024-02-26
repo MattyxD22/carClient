@@ -12,7 +12,7 @@ const CarImgComponent = ({ imgProp, markForDeletion }) => {
         onClick={() => markForDeletion(imgProp?.url)}
       >
         X
-      </button>
+      </button> 
     </div>
   );
 };
