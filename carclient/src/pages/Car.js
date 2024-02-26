@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavigationHeader from "../components/NavigationHeader";
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import * as GLOBAL from "../globals";
 import CarImgComponent from "../components/carImgComponent";
 
@@ -91,7 +91,6 @@ const Car = () => {
       Image: car.Image,
     });
 
-
     await fetch(url + "updateCar", {
       method: "PUT", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -151,7 +150,7 @@ const Car = () => {
           <button
             type="button"
             className={
-              editMode == false ? "btn btn-primary" : "btn btn-success"
+              editMode === false ? "btn btn-primary" : "btn btn-success"
             }
             onClick={async () => {
               setEditMode(!editMode);

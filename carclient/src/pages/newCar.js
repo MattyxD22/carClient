@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NavigationHeader from "../components/NavigationHeader";
 import * as GLOBAL from "../globals";
 
@@ -53,7 +52,7 @@ const NewCar = () => {
         //setCarEdited(true);
         setCar({ ...car, Year: value });
         break;
-      case "Make":
+      case "VIN":
         //setCarEdited(true);
         setCar({ ...car, VIN: value });
         break;

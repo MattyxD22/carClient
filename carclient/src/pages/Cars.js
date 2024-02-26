@@ -1,13 +1,10 @@
-import styles from "./styles.css";
 import NavigationHeader from "../components/NavigationHeader";
 import React, { useState, useEffect } from "react";
 import * as GLOBAL from "../globals";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Cars = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
-
-  const [searchParams] = useSearchParams();
   const [cars, setCars] = useState(null);
 
   //define "local" url from global file
@@ -75,7 +72,7 @@ const Cars = () => {
           cars.map((car) => {
             return (
               <div className="card d-flex mx-3 my-3">
-                {car.Image.length == 0 ? (
+                {car.Image.length === 0 ? (
                   <img
                     className="card-img-top px-2 py-2 control_cardImg_size"
                     alt="Car has no image"

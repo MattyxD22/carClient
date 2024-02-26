@@ -7,7 +7,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState(null);
   const [userPassword, setUserPassword] = useState(null);
-  const url = GLOBAL.url + "users/";
 
   const updateEmail = (e) => {
     setUserEmail(e.target.value);
@@ -25,7 +24,7 @@ const Login = () => {
     // const res = fetch(url + "login", { method: "POST", body: data });
     // const resData = res.json();
 
-    await fetch("http://127.0.0.1:3000/api/users/login", {
+    await fetch(GLOBAL.url + "users/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "content-type": "application/json",

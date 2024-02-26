@@ -34,7 +34,7 @@ const CreateAccount = () => {
 
     // if email doesnt exist, proceed to create account
     if (data.Exist === false) {
-      const createUserRes = await fetch(url + "createAccount", {
+      await fetch(url + "createAccount", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "content-type": "application/json",
