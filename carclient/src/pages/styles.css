@@ -14,7 +14,7 @@
   }
 
   .containerCars{
-    height: calc(100vh - 60px) !important;
+    height: calc(100vh - 125px) !important;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
