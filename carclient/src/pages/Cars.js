@@ -26,7 +26,6 @@ const Cars = () => {
       const res = await fetch(url);
       const data = await res.json();
 
-      console.log(data);
 
       let tempArr = [];
 
@@ -72,7 +71,6 @@ const Cars = () => {
       <div className="containerCars w-100 overflow-auto px-3">
         {cars != null &&
           cars.map((car) => {
-            console.log(car.image[0]);
             return (
               <div className="card d-flex mx-3 my-3">
                 {car.image[0] === null ||
