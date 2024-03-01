@@ -39,6 +39,7 @@ const NewCar = () => {
   };
 
   const carInfoHandler = (type, value) => {
+    console.log("setting info: ", type, value);
     switch (type) {
       case "Make":
         //setCarEdited(true);
@@ -55,6 +56,7 @@ const NewCar = () => {
       case "VIN":
         //setCarEdited(true);
         setCar({ ...car, VIN: value });
+        console.log(car.VIN);
         break;
       case "Image":
         //setCarEdited(true);
@@ -144,7 +146,7 @@ const NewCar = () => {
         <div className="d-flex flex-row carInfo_row">
           <span className="text-info">VIN</span>
           <input
-            type="number"
+            type="text"
             className="form-control"
             value={car?.VIN}
             onChange={(e) => {
