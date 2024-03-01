@@ -30,7 +30,7 @@ const Car = () => {
 
   const markForDeletion = (imgData) => {
     //const tempList = car.Image;
-    const tempImgs = car.Image.map((item) => {
+    const tempImgs = car.image.map((item) => {
       if (item.url !== imgData) {
         return item;
       }
@@ -38,7 +38,7 @@ const Car = () => {
     });
     setCar((prevCar) => ({
       ...prevCar,
-      Image: [...tempImgs],
+      image: [...tempImgs],
     }));
   };
 
@@ -86,11 +86,11 @@ const Car = () => {
   const updateCar = async () => {
     const data = JSON.stringify({
       VIN: carVIN,
-      Make: car.Make,
-      Model: car.Model,
-      Year: car.Year,
-      Description: car.Description,
-      Image: car.Image,
+      make: car.make,
+      model: car.model,
+      year: car.year,
+      description: car.description,
+      image: car.image,
     });
 
     await fetch(url + "updateCar", {
@@ -114,27 +114,27 @@ const Car = () => {
     switch (type) {
       case "Make":
         setCarEdited(true);
-        setCar({ ...car, Make: value });
+        setCar({ ...car, make: value });
         break;
       case "Model":
         setCarEdited(true);
-        setCar({ ...car, Model: value });
+        setCar({ ...car, model: value });
         break;
       case "Year":
         setCarEdited(true);
-        setCar({ ...car, Year: value });
+        setCar({ ...car, year: value });
         break;
       case "Image":
         setCarEdited(true);
         setCar((prevCar) => ({
           ...prevCar,
-          Image: [...prevCar.Image, ...value],
+          image: [...prevCar.image, ...value],
         }));
 
         break;
       case "Description":
         setCarEdited(true);
-        setCar({ ...car, Description: value });
+        setCar({ ...car, description: value });
         break;
 
       default:
@@ -187,13 +187,13 @@ const Car = () => {
             <input
               type="text"
               className="form-control"
-              value={car?.Make}
+              value={car?.make}
               onChange={(e) => {
                 carInfoHandler("Make", e.target.value);
               }}
             />
           ) : (
-            <p>{car?.Make}</p>
+            <p>{car?.make}</p>
           )}
         </div>
         <div className="d-flex flex-row carInfo_row">
@@ -202,13 +202,13 @@ const Car = () => {
             <input
               type="text"
               className="form-control"
-              value={car?.Model}
+              value={car?.model}
               onChange={(e) => {
                 carInfoHandler("Model", e.target.value);
               }}
             />
           ) : (
-            <p>{car?.Model}</p>
+            <p>{car?.model}</p>
           )}
         </div>
         <div className="d-flex flex-row carInfo_row">
@@ -217,13 +217,13 @@ const Car = () => {
             <input
               type="number"
               className="form-control"
-              value={car?.Year}
+              value={car?.year}
               onChange={(e) => {
                 carInfoHandler("Year", e.target.value);
               }}
             />
           ) : (
-            <p>{car?.Year}</p>
+            <p>{car?.year}</p>
           )}
         </div>
         <div className="d-flex flex-column carInfo_col">
@@ -254,7 +254,7 @@ const Car = () => {
                 }}
               ></input>
               <div className="py-4 d-flex flex-row">
-                {car?.Image.map((img) => {
+                {car?.image.map((img) => {
                   //console.log(img);
                   if (typeof img != "undefined") {
                     return (
@@ -267,7 +267,7 @@ const Car = () => {
                 })}
               </div>
             </div>
-          ) : car?.Image.length === 0 ? (
+          ) : car?.image.length === 0 ? (
             <p className="text-danger">No images available</p>
           ) : (
             <div
@@ -277,7 +277,7 @@ const Car = () => {
               data-bs-ride="carousel"
             >
               <div className="carousel-inner d-flex overflow-hidden h-100">
-                {car?.Image.map((img, index) => {
+                {car?.image.map((img, index) => {
                   //console.log(img, index);
                   //const reconstructImg = readFile(img.url);
                   return index === 0 ? (
@@ -341,36 +341,11 @@ const Car = () => {
                 carInfoHandler("Description", e.target.value);
               }}
               className="form-control"
-              defaultValue={car?.Description}
+              defaultValue={car?.description}
             ></textarea>
           ) : (
-            <p>{car?.Description}</p>
+            <p>{car?.description}</p>
           )}
-        </div>
-      </div>
-      <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 11 }}>
-        <div
-          id="liveToast"
-          className="toast"
-          role="alert"
-          aria-live="assertive"
-          aria-atomic="true"
-          autohide="true"
-        >
-          <div className="toast-header">
-            <img src="..." className="rounded me-2" alt="..." />
-            <strong className="me-auto">carAPI</strong>
-            <small>just now</small>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="toast"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div className="toast-body">
-            Hello, world! This is a toast message.
-          </div>
         </div>
       </div>
     </div>

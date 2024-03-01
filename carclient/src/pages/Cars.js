@@ -26,16 +26,18 @@ const Cars = () => {
       const res = await fetch(url);
       const data = await res.json();
 
+      console.log(data);
+
       let tempArr = [];
 
       data.map((car) => {
         return tempArr.push({
-          make: car.Make,
-          model: car.Model,
-          year: car.Year,
+          make: car.make,
+          model: car.model,
+          year: car.year,
           VIN: car.VIN,
-          Image: car.Image,
-          Description: car.Description,
+          image: car.image || null,
+          description: car.description,
         });
       });
 
@@ -72,14 +74,14 @@ const Cars = () => {
           cars.map((car) => {
             return (
               <div className="card d-flex mx-3 my-3">
-                {car.Image.length === 0 ? (
+                {car.image === null ? (
                   <img
                     className="card-img-top px-2 py-2 control_cardImg_size"
                     alt="Car has no image"
                   ></img>
                 ) : (
                   <img
-                    src={car.Image[0].url}
+                    src={car.image[0].url}
                     className="card-img-top py-2 px-2 control_cardImg_size"
                     alt="Car has no image"
                   ></img>
@@ -89,7 +91,7 @@ const Cars = () => {
                   <h5 className="card-title bold">
                     {car.model} - {car.year}
                   </h5>
-                  <h5 className="card-title">{car.Description}</h5>
+                  <h5 className="card-title">{car.description}</h5>
 
                   <div className="d-flex flex-row justify-content-end mt-auto">
                     <Link

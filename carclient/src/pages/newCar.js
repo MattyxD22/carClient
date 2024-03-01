@@ -6,12 +6,12 @@ import CarImgComponent from "../components/carImgComponent";
 
 const NewCar = () => {
   const [car, setCar] = useState({
-    Make: "",
-    Model: "",
-    Year: "",
+    make: "",
+    model: "",
+    year: "",
     VIN: "",
-    Description: "",
-    Image: [],
+    description: "",
+    image: [],
   });
 
   const setBase64 = async (file) => {
@@ -26,7 +26,7 @@ const NewCar = () => {
   };
 
   const markForDeletion = (imgData) => {
-    const tempImgs = car.Image.map((item) => {
+    const tempImgs = car.image.map((item) => {
       if (item.url !== imgData) {
         return item;
       }
@@ -34,7 +34,7 @@ const NewCar = () => {
 
     setCar((prevCar) => ({
       ...prevCar,
-      Image: [...tempImgs],
+      image: [...tempImgs],
     }));
   };
 
@@ -42,15 +42,15 @@ const NewCar = () => {
     switch (type) {
       case "Make":
         //setCarEdited(true);
-        setCar({ ...car, Make: value });
+        setCar({ ...car, make: value });
         break;
       case "Model":
         //setCarEdited(true);
-        setCar({ ...car, Model: value });
+        setCar({ ...car, model: value });
         break;
       case "Year":
         //setCarEdited(true);
-        setCar({ ...car, Year: value });
+        setCar({ ...car, year: value });
         break;
       case "VIN":
         //setCarEdited(true);
@@ -60,13 +60,13 @@ const NewCar = () => {
         //setCarEdited(true);
         setCar((prevCar) => ({
           ...prevCar,
-          Image: [...prevCar.Image, ...value],
+          image: [...prevCar.image, ...value],
         }));
 
         break;
       case "Description":
         //setCarEdited(true);
-        setCar({ ...car, Description: value });
+        setCar({ ...car, description: value });
         break;
 
       default:
@@ -78,11 +78,11 @@ const NewCar = () => {
   const postCar = async () => {
     const data = JSON.stringify({
       VIN: car.VIN,
-      Make: car.Make,
-      Model: car.Model,
-      Year: car.Year,
-      Description: car.Description,
-      Image: car.Image,
+      make: car.make,
+      model: car.model,
+      year: car.year,
+      description: car.description,
+      image: car.image,
     });
 
     await fetch(GLOBAL.url + "cars/newCar", {
@@ -113,7 +113,7 @@ const NewCar = () => {
           <input
             type="text"
             className="form-control"
-            value={car?.Make}
+            value={car?.make}
             onChange={(e) => {
               carInfoHandler("Make", e.target.value);
             }}
@@ -124,7 +124,7 @@ const NewCar = () => {
           <input
             type="text"
             className="form-control"
-            value={car?.Model}
+            value={car?.model}
             onChange={(e) => {
               carInfoHandler("Model", e.target.value);
             }}
@@ -135,7 +135,7 @@ const NewCar = () => {
           <input
             type="number"
             className="form-control"
-            value={car?.Year}
+            value={car?.year}
             onChange={(e) => {
               carInfoHandler("Year", e.target.value);
             }}
@@ -179,7 +179,7 @@ const NewCar = () => {
               }}
             ></input>
             <div className="py-4 d-flex flex-row">
-              {car?.Image.map((img) => {
+              {car?.image.map((img) => {
                 if (typeof img != "undefined") {
                   return (
                     <CarImgComponent
@@ -200,7 +200,7 @@ const NewCar = () => {
               carInfoHandler("Description", e.target.value);
             }}
             className="form-control"
-            defaultValue={car?.Description}
+            defaultValue={car?.description}
           ></textarea>
         </div>
 

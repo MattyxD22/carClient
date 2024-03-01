@@ -9,27 +9,27 @@ const CreateAccount = () => {
   const url = GLOBAL.url + "users/";
 
   const [createUser, setCreateUser] = useState({
-    Email: "",
-    Password: "",
+    email: "",
+    password: "",
   });
 
   const handleEmail = (email) => {
     setCreateUser((prevUser) => ({
       ...prevUser,
-      Email: email,
+      email: email,
     }));
   };
 
   const handlePassword = (password) => {
     setCreateUser((prevUser) => ({
       ...prevUser,
-      Password: password,
+      password: password,
     }));
   };
 
   const handleCreateAccount = async () => {
     // Check if email already is inside the system
-    const response = await fetch(url + "checkEmail/" + createUser.Email);
+    const response = await fetch(url + "checkEmail/" + createUser.email);
     const data = await response.json();
 
     // if email doesnt exist, proceed to create account
@@ -41,8 +41,8 @@ const CreateAccount = () => {
           //Authorization: localStorage.getItem("auth-token"),
         },
         body: JSON.stringify({
-          email: createUser.Email,
-          password: createUser.Password,
+          email: createUser.email,
+          password: createUser.password,
         }), // body data type must match "Content-Type" header)
       })
         .then((res) => res.json())
