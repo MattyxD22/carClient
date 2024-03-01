@@ -72,9 +72,11 @@ const Cars = () => {
       <div className="containerCars w-100 overflow-auto px-3">
         {cars != null &&
           cars.map((car) => {
+            console.log(car.image[0]);
             return (
               <div className="card d-flex mx-3 my-3">
-                {car.image === null ? (
+                {car.image[0] === null ||
+                typeof car.image[0] === "undefined" ? (
                   <img
                     className="card-img-top px-2 py-2 control_cardImg_size"
                     alt="Car has no image"
@@ -83,7 +85,7 @@ const Cars = () => {
                   <img
                     src={car.image[0].url}
                     className="card-img-top py-2 px-2 control_cardImg_size"
-                    alt="Car has no image"
+                    alt="Car image"
                   ></img>
                 )}
                 <div className="card-body d-flex flex-column">
